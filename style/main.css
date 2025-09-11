@@ -108,7 +108,7 @@ p {
   line-height: 1.65; }
 
 a {
-  color: #A31F34;
+  color: #003399;
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer; }
@@ -695,4 +695,5 @@ hr {
     margin-top: 90px !important; }
   .game-message .lower {
     margin-top: 30px !important; } }
+
 
