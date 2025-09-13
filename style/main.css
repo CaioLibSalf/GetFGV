@@ -326,15 +326,15 @@ hr {
     z-index: 10;
     font-size: 55px; }
   .tile.tile-2 .tile-inner {
-    background: #fff url('../img/fgv.jpeg');
+    background: #fff url('../img/insper.jpeg');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-4 .tile-inner {
-    background: #fff url('../img/estacio.jpg');
+    background: #fff url('../img/usp.jpg');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0), inset 0 0 0 1px rgba(255, 255, 255, 0); }
   .tile.tile-8 .tile-inner {
-    background: #fff url('../img/unip.png');
+    background: #fff url('../img/ibmec.png');
     background-size: cover; }
   .tile.tile-16 .tile-inner {
     background: #fff url('../img/faap.png');
@@ -346,15 +346,14 @@ hr {
     background: #fff url('../img/mack.png');
     background-size: cover; }
   .tile.tile-128 .tile-inner {
-    background: #fff url('../img/puc.png');
+    background: #fff url('../img/uninove.png');
     background-size: cover;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
       .tile.tile-128 .tile-inner {
         font-size: 25px; } }
   .tile.tile-256 .tile-inner {
-    background: #fff url('../img/ibmec.png');
+    background: #fff url('../img/ita.png');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
     font-size: 45px; }
@@ -362,7 +361,7 @@ hr {
       .tile.tile-256 .tile-inner {
         font-size: 25px; } }
   .tile.tile-512 .tile-inner {
-    background: #fff url('../img/usp.png');
+    background: #fff url('../img/yale.png');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
     font-size: 45px; }
@@ -370,7 +369,7 @@ hr {
       .tile.tile-512 .tile-inner {
         font-size: 25px; } }
   .tile.tile-1024 .tile-inner {
-    background: #fff url('../img/fam.png');
+    background: #fff url('../img/harvard.png');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
     font-size: 35px; }
@@ -378,7 +377,7 @@ hr {
       .tile.tile-1024 .tile-inner {
         font-size: 15px; } }
   .tile.tile-2048 .tile-inner {
-    background: #fff url('../img/insper.jpg');
+    background: #fff url('../img/fgv.jpg');
     background-size: cover;
     box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
     font-size: 35px; }
