@@ -706,6 +706,36 @@ a.link-azul {
   font-weight: bold;
 }
 
+/* ===== Rodapé do site (index.html) ===== */
+.site-footer{
+  /* centralização horizontal */
+  max-width: 900px;            /* ajuste para o mesmo valor do seu container central */
+  margin: 40px auto 24px;      /* auto nas laterais = centraliza */
+  padding: 0 16px;
+
+  /* aparência e alinhamento */
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+
+  /* IMPORTANTÍSSIMO: evita que floats do grid empurrem o footer para a lateral */
+  clear: both;
+}
+
+.site-footer p{
+  margin: 0;
+}
+
+.site-footer a{
+  color: #004B9B;              /* azul FGV aproximado; troque se tiver outra variável/cor */
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-footer a:hover{
+  text-decoration: underline;
+}
+
 
 
 
