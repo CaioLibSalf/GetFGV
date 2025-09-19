@@ -1,105 +1,165 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body {
-        text-align: center;
-        background-color: #f2f2f2;
-        font-family: Arial, sans-serif;
-      }
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Curtiu? — GetFGV</title>
+  <meta name="description" content="Gostou do GetFGV? Compartilhe no WhatsApp e chame seus amigos para jogar!" />
+  <link rel="canonical" href="https://getfgv.com.br/convite.html" />
 
-      h1 {
-        margin-top: 50px;
-      }
+  <style>
+    :root{
+      --azul-fgv:#004B9B;
+      --cinza:#f6f7f9;
+      --cinza-borda:#e5e7eb;
+      --texto:#111827;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--texto);
+      background:#fff;
+    }
+    .container{
+      max-width:900px;           /* alinhar ao restante do site */
+      margin:32px auto;
+      padding:0 16px;
+    }
+    header, footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    nav a{margin-right:12px;color:var(--azul-fgv);text-decoration:none;font-weight:600}
+    nav a:hover{text-decoration:underline}
 
-      .content {
-        margin: 50px;
-        padding: 20px;
-        background-color: #f2f2f2;
-        border-radius: 4px;
-      }
+    .card{
+      background:var(--cinza);
+      border:1px solid var(--cinza-borda);
+      border-radius:12px;
+      padding:24px;
+      margin-top:16px;
+      text-align:center;
+    }
+    h1{margin:0 0 6px 0}
+    p.sub{margin:0;color:#6b7280}
 
-      .button-container {
-        margin-top: 20px;
-        display: flex;
-        justify-content: center;
-      }
+    .btns{
+      margin-top:24px;
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      position:relative;
+      min-height:64px; /* espaço pro botão 'Não' se mover */
+    }
+    .btn{
+      padding:12px 20px;
+      font-size:16px;
+      border:0;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .btn-whats{
+      background:#25D366;
+      color:#fff;
+    }
+    .btn-no{
+      background:#f43f5e;
+      color:#fff;
+      position:relative; /* será movido via JS */
+    }
 
-      .button {
-        padding: 10px 20px;
-        font-size: 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin: 0 10px;
-      }
+    /* footer igual ao das outras páginas */
+    .site-footer{
+      max-width:900px;
+      margin:40px auto 24px;
+      padding:0 16px;
+      text-align:center;
+      color:#555;
+      clear:both;
+      font-size:14px;
+    }
+    .site-footer a{color:var(--azul-fgv);text-decoration:none;font-weight:600}
+    .site-footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Curtiu o GetFGV?</h1>
+      <nav>
+        <a href="/">Início</a>
+        <a href="/sobre.html">Sobre</a>
+        <a href="/contato.html">Contato</a>
+        <a href="/politica.html">Privacidade</a>
+      </nav>
+    </header>
 
-      .whatsapp-button {
-        background-color: #4caf50;
-        color: #fff;
-      }
+    <section class="card">
+      <h2>Conta pra alguém 😉</h2>
+      <p class="sub">(Nem tenta clicar em “Não”)</p>
 
-      .move-button {
-        background-color: #f44336;
-        color: #fff;
-      }
-
-      #moveButton {
-        position: relative;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="content">
-      <h1>Eai, gostou?</h1>
-      <p>(Nem tenta clicar em "Não")</p>
-
-      <div class="button-container">
-        <button class="button whatsapp-button" id="whatsappButton">Sim!</button>
-        <button class="button move-button" id="moveButton">Não.</button>
+      <div class="btns">
+        <button class="btn btn-whats" id="btnSim">Sim! Compartilhar no WhatsApp</button>
+        <button class="btn btn-no" id="btnNao">Não.</button>
       </div>
-    </div>
+    </section>
 
-    <script>
-      // Redirecionar para o WhatsApp no aplicativo
-      document.getElementById("whatsappButton").onclick = function () {
-        var mensagem = encodeURIComponent("Oi gato");
-        var numeroCelular = "+5511968663799";
+    <footer class="site-footer">
+      <p>© <span id="y"></span> GetFGV — Todos os direitos reservados.</p>
+      <p>
+        <a href="/sobre.html">Sobre</a> ·
+        <a href="/contato.html">Contato</a> ·
+        <a href="/politica.html">Política de Privacidade</a>
+      </p>
+    </footer>
+  </div>
 
-        // Verificar se está em um dispositivo móvel
-        if (
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent
-          )
-        ) {
-          window.location.href =
-            "whatsapp://send?phone=" + numeroCelular + "&text=" + mensagem;
-        } else {
-          // Abrir a versão web do WhatsApp
-          window.open(
-            "https://web.whatsapp.com/send?phone=" +
-              numeroCelular +
-              "&text=" +
-              mensagem
-          );
-        }
-      };
+  <script>
+    // ano no footer
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-      // Mover o botão para um local aleatório na tela
-      document.getElementById("moveButton").onclick = function () {
-        var screenWidth = window.innerWidth;
-        var screenHeight = window.innerHeight;
-        var buttonWidth = document.getElementById("moveButton").offsetWidth;
-        var buttonHeight = document.getElementById("moveButton").offsetHeight;
+    // Compartilhar no WhatsApp
+    document.getElementById('btnSim').addEventListener('click', function () {
+      const url = 'https://getfgv.com.br';
+      const texto = 'Curti o GetFGV! Bora jogar? ' + url;
+      const enc = encodeURIComponent(texto);
 
-        var randomX =
-          Math.floor(Math.random() * (screenWidth - buttonWidth)) / 2;
-        var randomY =
-          Math.floor(Math.random() * (screenHeight - buttonHeight)) / 2;
+      // 1) Tenta Web Share API (fica lindo em mobile)
+      if (navigator.share) {
+        navigator.share({ title: 'GetFGV', text: 'Curti o GetFGV! Bora jogar?', url })
+          .catch(() => { /* ignorar cancelamentos */ });
+        return;
+      }
 
-        document.getElementById("moveButton").style.left = randomX + "px";
-        document.getElementById("moveButton").style.top = randomY + "px";
-      };
-    </script>
-  </body>
+      // 2) Fallback universal do WhatsApp (funciona em desktop e mobile)
+      const wa = 'https://wa.me/?text=' + enc;
+      window.open(wa, '_blank');
+    });
+
+    // Botão "Não" foge clicando
+    document.getElementById('btnNao').addEventListener('mouseover', moveNao);
+    document.getElementById('btnNao').addEventListener('click', moveNao);
+
+    function moveNao(){
+      const btn = document.getElementById('btnNao');
+      const wrapper = btn.parentElement; // .btns
+      const maxX = wrapper.clientWidth - btn.offsetWidth;
+      const maxY = wrapper.clientHeight - btn.offsetHeight;
+
+      // se a área for muito pequena, aumenta altura pra dar espaço
+      if (maxY < 10) wrapper.style.minHeight = '120px';
+
+      const x = Math.max(0, Math.floor(Math.random() * (wrapper.clientWidth - btn.offsetWidth)));
+      const y = Math.max(0, Math.floor(Math.random() * (wrapper.clientHeight - btn.offsetHeight)));
+
+      btn.style.position = 'absolute';
+      btn.style.left = x + 'px';
+      btn.style.top = y + 'px';
+    }
+  </script>
+</body>
 </html>
