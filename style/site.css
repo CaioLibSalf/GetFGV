@@ -1,0 +1,73 @@
+/* style/site.css  —  tema global GetFGV */
+:root{
+  --azul-fgv:#004B9B;
+  --texto:#111827;
+  --muted:#6b7280;
+  --cinza-bg:#f6f7f9;
+  --cinza-borda:#e5e7eb;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--texto);
+  background:#fff;
+  line-height:1.6;
+}
+
+/* layout base */
+.container{
+  max-width:900px;
+  margin:32px auto;
+  padding:0 16px;
+}
+
+/* header + navegação */
+.site-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.site-nav a{
+  margin-right:12px;
+  color:var(--azul-fgv);
+  text-decoration:none;
+  font-weight:600;
+}
+.site-nav a:hover{ text-decoration:underline }
+
+/* tipografia */
+h1{margin:0 0 8px}
+h2{margin-top:24px}
+
+/* cartões/caixas de texto */
+.card{
+  background:var(--cinza-bg);
+  border:1px solid var(--cinza-borda);
+  border-radius:12px;
+  padding:16px;
+  margin:16px 0;
+}
+
+/* botões utilitários (opcional) */
+.btn{display:inline-block;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+.btn-primary{background:var(--azul-fgv);color:#fff}
+.btn-muted{background:#eaeef3;color:#1f2937}
+
+/* rodapé padrão */
+.site-footer{
+  max-width:900px;
+  margin:40px auto 24px;
+  padding:0 16px;
+  text-align:center;
+  color:#555;
+  font-size:14px;
+  clear:both;
+}
+.site-footer a{color:var(--azul-fgv);text-decoration:none;font-weight:600}
+.site-footer a:hover{text-decoration:underline}
