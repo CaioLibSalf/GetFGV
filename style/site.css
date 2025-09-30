@@ -1,0 +1,241 @@
+
+/* ===== GetFGV — Estilo Padronizado ===== */
+:root{
+  --fgv-azul:#004B9B;
+  --fgv-azul-escuro:#003a77;
+  --cinza:#f6f7f9;
+  --cinza-borda:#e5e7eb;
+  --texto:#111827;
+  --muted:#6b7280;
+  --bg:#ffffff;
+  --radius:14px;
+  --shadow: 0 6px 20px rgba(0,0,0,.06);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  line-height:1.6;
+  color:var(--texto);
+  background:var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container{
+  max-width: 920px;
+  margin: 28px auto;
+  padding: 0 16px;
+}
+
+a{color:var(--fgv-azul); text-decoration: none;}
+a:hover{text-decoration: underline;}
+
+/* ===== Header ===== */
+.site-header{
+  border-bottom:1px solid var(--cinza-borda);
+  background:#fff;
+}
+.site-header .wrap{
+  max-width: 920px; margin: 0 auto; padding: 14px 16px;
+  display:flex; align-items:center; justify-content: space-between; gap:12px; flex-wrap:wrap;
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+}
+.brand .logo{
+  width:36px; height:36px; border-radius:8px; background:var(--fgv-azul);
+  box-shadow: inset 0 0 0 3px #fff, 0 4px 14px rgba(0,0,0,.12);
+}
+.brand .title{
+  font-weight:800; letter-spacing:.2px; color:var(--fgv-azul);
+}
+
+/* Nav */
+.site-nav a{
+  font-weight:600;
+  padding:8px 10px;
+  border-radius:10px;
+}
+.site-nav a.active, .site-nav a:focus-visible{
+  background: var(--cinza);
+  outline: none;
+}
+
+/* ===== Cards ===== */
+.card{
+  background: var(--cinza);
+  border:1px solid var(--cinza-borda);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.card + .card{ margin-top: 16px; }
+
+/* ===== Footer ===== */
+.site-footer{
+  border-top:1px solid var(--cinza-borda);
+  margin-top: 32px;
+  background:#fff;
+}
+.site-footer .wrap{
+  max-width: 920px; margin: 0 auto; padding: 18px 16px;
+  display:flex; align-items:center; justify-content: space-between; gap:12px; flex-wrap:wrap;
+  color: var(--muted);
+  font-size: 14px;
+}
+.site-footer nav a{ color: var(--fgv-azul); font-weight:600; }
+.site-footer small{ color: var(--muted); }
+
+/* Utilidades */
+.muted{ color: var(--muted) }
+.center{text-align:center}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  gap:8px;
+  padding: 12px 16px;
+  border:0; border-radius:12px;
+  background: var(--fgv-azul);
+  color:white; font-weight:700;
+  cursor:pointer;
+  transition: transform .06s ease, filter .2s ease;
+  box-shadow: 0 8px 20px rgba(0,79,155,.18);
+}
+.btn:hover{ filter: brightness(1.05); }
+.btn:active{ transform: translateY(1px); }
+.btn-outline{
+  background:#fff; color: var(--fgv-azul); border:1px solid var(--fgv-azul);
+  box-shadow:none;
+}
+.btn-danger{ background:#f43f5e; box-shadow:0 8px 20px rgba(244,63,94,.2) }
+
+/* ===== Página do jogo (index) ===== */
+.heading{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.heading .title{
+  color: var(--fgv-azul);
+  margin: 0;
+}
+.scores-container .score-container, .scores-container .best-container{
+  background: #fff;
+  border:1px solid var(--cinza-borda);
+  border-radius: 10px;
+  padding: 6px 10px;
+  min-width: 64px;
+  text-align:center;
+  font-weight:700;
+  box-shadow: var(--shadow);
+}
+
+/* ===== Responsividade ===== */
+@media (max-width:560px){
+  .site-nav a{ padding:8px }
+  .heading{ gap:8px }
+}
+
+/* === Ajustes solicitados === */
+/* Contraste da "tabela" de pontos */
+.scores-container .score-container,
+.scores-container .best-container{
+  background: var(--fgv-azul) !important;
+  color: #fff !important;
+  border: 0 !important;
+  text-shadow: none !important;
+  box-shadow: 0 8px 18px rgba(0,79,155,.20) !important;
+}
+
+/* Centralizar o jogo */
+.game-container{ margin: 12px auto !important; }
+
+/* Área de botões do convite para o botão "Não" fugir */
+.btns{ position: relative; min-height: 96px; display:flex; gap:12px; flex-wrap:wrap; }
+.btns .btn-no{ z-index: 2; }
+
+
+/* --- Pontuação maior e mais legível --- */
+.scores-container{
+  display:flex; align-items:center; gap:14px;
+}
+.score-container, .best-container{
+  position: relative;
+  padding: 14px 18px 12px !important;
+  border-radius: 16px !important;
+  font-size: 28px !important;
+  line-height: 1 !important;
+  font-weight: 800 !important;
+  letter-spacing: .3px;
+}
+.score-container::after, .best-container::after{
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  content: "";
+}
+.score-container::after{ content: "PONTOS"; }
+.best-container::after{ content: "RECORDE"; }
+
+@media (min-width: 900px){
+  .score-container, .best-container{ font-size: 34px !important; padding: 18px 22px 14px !important; }
+  .score-container::after, .best-container::after{ font-size: 13px; top:-16px; }
+}
+
+
+/* --- Redefinição do estilo da pontuação --- */
+.scores-container{
+  display:flex; align-items:flex-start; gap:14px;
+}
+.score-container, .best-container{
+  background: var(--fgv-azul) !important;
+  color:#fff !important;
+  border-radius: 14px !important;
+  padding: 10px 18px !important;
+  font-weight:700 !important;
+  font-size:26px !important;
+  min-width:100px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  box-shadow:0 4px 14px rgba(0,79,155,.25);
+}
+.score-container::before, .best-container::before{
+  content: attr(data-label);
+  display:block;
+  font-size:13px;
+  font-weight:900;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+
+
+/* --- Altura fixa maior para blocos de pontuação --- */
+.score-container, .best-container{
+  min-height: 90px !important;
+  justify-content: center;
+}
+
+
+/* --- Largura fixa igual para blocos de pontuação --- */
+.score-container, .best-container{
+  width: 140px !important;
+}
+
+
+/* --- Reposicionamento da pontuação --- */
+.scores-container{
+  margin-top: 20px !important;
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  justify-content: flex-end;
+}
