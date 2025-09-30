@@ -299,18 +299,6 @@ a:hover{text-decoration: underline;}
     .game-container{ transform: translateX(-50%) scale(0.74) !important; }
   }
   
-  /* garante que o grid “puxe” o tamanho do container e fique centralizado */
-  .grid-container,
-  .tile-container{
-    margin: 0 auto !important;            /* centraliza filhos internos      */
-    display: block !important;
-  }
-
-  /* se o fundo cinza do tabuleiro estava no .game-container, traga para o grid */
-  .grid-container{
-    background-color: #9e9e9e !important; /* use a mesma cor do seu board     */
-    border-radius: 12px !important;       /* (opcional) mantém o visual       */
-  }
 }
 }
 
