@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Curtiu? — GetFGV</title>
+<meta content="Gostou do GetFGV? Compartilhe no WhatsApp e chame seus amigos para jogar!" name="description"/>
+<link href="https://getfgv.com.br/convite.html" rel="canonical"/>
+<link href="style/site.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="/"><img src="img/fgv-logo.jpg" alt="FGV" style="height:40px; width:auto; border-radius:8px; margin-right:8px;"><span class="title">GetFGV</span></a>
+<nav aria-label="Navegação principal" class="site-nav">
+<a href="/" id="nav-inicio">Início</a>
+<a href="/sobre.html" id="nav-sobre">Sobre</a>
+<a href="/convite.html" id="nav-convite">Convite</a>
+<a href="/politica.html" id="nav-priv">Privacidade</a>
+</nav>
+</div>
+</header>
+<main class="container"><section class="card"><h1>Curtiu o GetFGV?</h1><p>Compartilhe com seus amigos e desafie-os a chegar na FGV!</p><div class="btns"><a class="btn" href="https://api.whatsapp.com/send?text=Joga%20o%20GetFGV!%20https://getfgv.com.br" id="btnSim">Sim, compartilhar</a><button class="btn btn-outline btn-no" id="btnNao" type="button">Não</button></div></section>
+<script>
+ (function(){
+      const container = document.querySelector('.btns');
+      const noBtn = document.getElementById('btnNao');
+      if(!container || !noBtn) return;
+      let armed = true;
+
+      function moveButton(){
+        if(!armed) return;
+        // Ensure absolute positioning when moving
+        noBtn.style.position = 'absolute';
+        const cRect = container.getBoundingClientRect();
+        const bRect = noBtn.getBoundingClientRect();
+        const pad = 4;
+        const maxX = Math.max(0, cRect.width - bRect.width - pad);
+        const maxY = Math.max(0, cRect.height - bRect.height - pad);
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      }
+      // Trigger on hover / focus / attempt to click
+      noBtn.addEventListener('mouseenter', moveButton);
+      noBtn.addEventListener('pointerdown', moveButton);
+      noBtn.addEventListener('focus', moveButton);
+      // Also dodge when the mouse gets close
+      container.addEventListener('mousemove', (e)=>{
+        const bRect = noBtn.getBoundingClientRect();
+        const dx = Math.abs(e.clientX - (bRect.left + bRect.width/2));
+        const dy = Math.abs(e.clientY - (bRect.top + bRect.height/2));
+        const threshold = 90;
+        if(dx < threshold && dy < threshold) moveButton();
+      });
+    })();
+</script>
+</main></body></html>
