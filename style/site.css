@@ -298,8 +298,6 @@ a:hover{text-decoration: underline;}
   @media (max-width: 400px){
     .game-container{ transform: translateX(-50%) scale(0.74) !important; }
   }
-  
-}
 }
 
 
