@@ -284,19 +284,16 @@ a:hover{text-decoration: underline;}
   /* 3) Game board centralizado e encaixado */
   .game-container{
     width: 250px !important;                /* largura “base” do 2048 */
-    background: transparent !important;
-    position: relative !important;
-    left: 50% !important; 
-    margin: 16px 0 !important;           /* centraliza horizontalmente */
+    margin: 16px auto !important;           /* centraliza horizontalmente */
     transform-origin: top center !important;
     display: block !important;
   }
   /* Escala para caber no viewport sem sair do container */
   @media (max-width: 560px) and (min-width: 401px){
-    .game-container{ transform: translateX(-50%) scale(0.86) !important; }
+    .game-container{ transform: scale(0.86); }
   }
   @media (max-width: 400px){
-    .game-container{ transform: translateX(-50%) scale(0.74) !important; }
+    .game-container{ transform: scale(0.74); }
   }
 }
 
