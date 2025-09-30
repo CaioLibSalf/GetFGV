@@ -1,165 +1,62 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Curtiu? — GetFGV</title>
-  <meta name="description" content="Gostou do GetFGV? Compartilhe no WhatsApp e chame seus amigos para jogar!" />
-  <link rel="canonical" href="https://getfgv.com.br/convite.html" />
-
-  <style>
-    :root{
-      --azul-fgv:#004B9B;
-      --cinza:#f6f7f9;
-      --cinza-borda:#e5e7eb;
-      --texto:#111827;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color:var(--texto);
-      background:#fff;
-    }
-    .container{
-      max-width:900px;           /* alinhar ao restante do site */
-      margin:32px auto;
-      padding:0 16px;
-    }
-    header, footer{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    nav a{margin-right:12px;color:var(--azul-fgv);text-decoration:none;font-weight:600}
-    nav a:hover{text-decoration:underline}
-
-    .card{
-      background:var(--cinza);
-      border:1px solid var(--cinza-borda);
-      border-radius:12px;
-      padding:24px;
-      margin-top:16px;
-      text-align:center;
-    }
-    h1{margin:0 0 6px 0}
-    p.sub{margin:0;color:#6b7280}
-
-    .btns{
-      margin-top:24px;
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      position:relative;
-      min-height:64px; /* espaço pro botão 'Não' se mover */
-    }
-    .btn{
-      padding:12px 20px;
-      font-size:16px;
-      border:0;
-      border-radius:10px;
-      cursor:pointer;
-    }
-    .btn-whats{
-      background:#25D366;
-      color:#fff;
-    }
-    .btn-no{
-      background:#f43f5e;
-      color:#fff;
-      position:relative; /* será movido via JS */
-    }
-
-    /* footer igual ao das outras páginas */
-    .site-footer{
-      max-width:900px;
-      margin:40px auto 24px;
-      padding:0 16px;
-      text-align:center;
-      color:#555;
-      clear:both;
-      font-size:14px;
-    }
-    .site-footer a{color:var(--azul-fgv);text-decoration:none;font-weight:600}
-    .site-footer a:hover{text-decoration:underline}
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Curtiu? — GetFGV</title>
+<meta content="Gostou do GetFGV? Compartilhe no WhatsApp e chame seus amigos para jogar!" name="description"/>
+<link href="https://getfgv.com.br/convite.html" rel="canonical"/>
+<link href="style/site.css" rel="stylesheet"/>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Curtiu o GetFGV?</h1>
-      <nav>
-        <a href="/">Início</a>
-        <a href="/sobre.html">Sobre</a>
-        <a href="/convite.html">Convite</a>
-        <a href="/politica.html">Privacidade</a>
-      </nav>
-    </header>
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="/">
+<span aria-hidden="true" class="logo"></span>
+<span class="title">GetFGV</span>
+</a>
+<nav aria-label="Navegação principal" class="site-nav">
+<a href="/" id="nav-inicio">Início</a>
+<a href="/sobre.html" id="nav-sobre">Sobre</a>
+<a href="/convite.html" id="nav-convite">Convite</a>
+<a href="/politica.html" id="nav-priv">Privacidade</a>
+</nav>
+</div>
+</header>
+<main class="container"><section class="card"><h1>Curtiu o GetFGV?</h1><p>Compartilhe com seus amigos e desafie-os a chegar na FGV!</p><div class="btns"><a class="btn" href="https://api.whatsapp.com/send?text=Joga%20o%20GetFGV!%20https://getfgv.com.br" id="btnSim">Sim, compartilhar</a><button class="btn btn-outline btn-no" id="btnNao" type="button">Não</button></div></section>
+<script>
+ (function(){
+      const container = document.querySelector('.btns');
+      const noBtn = document.getElementById('btnNao');
+      if(!container || !noBtn) return;
+      let armed = true;
 
-    <section class="card">
-      <h2>Conta pra alguém 😉</h2>
-      <p class="sub">(Nem tenta clicar em “Não”)</p>
-
-      <div class="btns">
-        <button class="btn btn-whats" id="btnSim">Sim! Compartilhar</button>
-        <button class="btn btn-no" id="btnNao">Não.</button>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <p>© <span id="y"></span> GetFGV — Todos os direitos reservados.</p>
-      <p>
-        <a href="/sobre.html">Sobre</a> ·
-        <a href="/convite.html">Convite</a> ·
-        <a href="/politica.html">Privacidade</a>
-      </p>
-    </footer>
-  </div>
-
-  <script>
-    // ano no footer
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Compartilhar no WhatsApp
-    document.getElementById('btnSim').addEventListener('click', function () {
-      const url = 'https://getfgv.com.br';
-      const texto = 'Curti o GetFGV! Bora jogar? ' + url;
-      const enc = encodeURIComponent(texto);
-
-      // 1) Tenta Web Share API (fica lindo em mobile)
-      if (navigator.share) {
-        navigator.share({ title: 'GetFGV', text: 'Curti o GetFGV! Bora jogar?', url })
-          .catch(() => { /* ignorar cancelamentos */ });
-        return;
+      function moveButton(){
+        if(!armed) return;
+        // Ensure absolute positioning when moving
+        noBtn.style.position = 'absolute';
+        const cRect = container.getBoundingClientRect();
+        const bRect = noBtn.getBoundingClientRect();
+        const pad = 4;
+        const maxX = Math.max(0, cRect.width - bRect.width - pad);
+        const maxY = Math.max(0, cRect.height - bRect.height - pad);
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
       }
-
-      // 2) Fallback universal do WhatsApp (funciona em desktop e mobile)
-      const wa = 'https://wa.me/?text=' + enc;
-      window.open(wa, '_blank');
-    });
-
-    // Botão "Não" foge clicando
-    document.getElementById('btnNao').addEventListener('mouseover', moveNao);
-    document.getElementById('btnNao').addEventListener('click', moveNao);
-
-    function moveNao(){
-      const btn = document.getElementById('btnNao');
-      const wrapper = btn.parentElement; // .btns
-      const maxX = wrapper.clientWidth - btn.offsetWidth;
-      const maxY = wrapper.clientHeight - btn.offsetHeight;
-
-      // se a área for muito pequena, aumenta altura pra dar espaço
-      if (maxY < 10) wrapper.style.minHeight = '120px';
-
-      const x = Math.max(0, Math.floor(Math.random() * (wrapper.clientWidth - btn.offsetWidth)));
-      const y = Math.max(0, Math.floor(Math.random() * (wrapper.clientHeight - btn.offsetHeight)));
-
-      btn.style.position = 'absolute';
-      btn.style.left = x + 'px';
-      btn.style.top = y + 'px';
-    }
-  </script>
-</body>
-</html>
+      // Trigger on hover / focus / attempt to click
+      noBtn.addEventListener('mouseenter', moveButton);
+      noBtn.addEventListener('pointerdown', moveButton);
+      noBtn.addEventListener('focus', moveButton);
+      // Also dodge when the mouse gets close
+      container.addEventListener('mousemove', (e)=>{
+        const bRect = noBtn.getBoundingClientRect();
+        const dx = Math.abs(e.clientX - (bRect.left + bRect.width/2));
+        const dy = Math.abs(e.clientY - (bRect.top + bRect.height/2));
+        const threshold = 90;
+        if(dx < threshold && dy < threshold) moveButton();
+      });
+    })();
+</script>
+</main></body></html>
