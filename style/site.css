@@ -283,7 +283,7 @@ a:hover{text-decoration: underline;}
 
   /* 3) Game board centralizado e encaixado */
   .game-container{
-    width: max-content !important;                /* largura “base” do 2048 */
+    width: 250px !important;                /* largura “base” do 2048 */
     background: transparent !important;
     position: relative !important;
     left: 50% !important; 
