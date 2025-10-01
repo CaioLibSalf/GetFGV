@@ -325,7 +325,7 @@ a:hover{text-decoration: underline;}
   @media (max-width: 400px){
     .game-container{ transform: scale(0.74); }
   }
-
+}
 /* ====== LANDSCAPE (celular deitado) ====== */
 @media (max-width: 900px) and (orientation: landscape){
 
