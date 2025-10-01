@@ -31,6 +31,8 @@
       <a href="/politica.html" id="nav-priv">Privacidade</a>
       <!-- link para esta página -->
       <a href="/leaderboard.html" id="nav-leader">Leaderboard</a>
+      <button id="theme-toggle" class="btn btn-outline" style="margin-left:12px" aria-label="Alternar tema" title="Alternar tema">🌙/☀️</button>
+
     </nav>
   </div>
 </header>
@@ -145,6 +147,20 @@
 
   if (BTN) BTN.addEventListener('click', ()=> fetchTopN(20));
 </script>
+<script>
+  (function(){
+    const btn = document.getElementById("theme-toggle");
+    const root = document.documentElement;
+    if (localStorage.getItem("theme") === "dark") root.classList.add("dark");
+    if (btn){
+      btn.addEventListener("click", () => {
+        root.classList.toggle("dark");
+        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
+      });
+    }
+  })();
+</script>
+
 
 </body>
 </html>
