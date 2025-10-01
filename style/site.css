@@ -1,16 +1,28 @@
-
 /* ===== GetFGV — Estilo Padronizado ===== */
-:root{
-  --fgv-azul:#004B9B;
-  --fgv-azul-escuro:#003a77;
-  --cinza:#f6f7f9;
-  --cinza-borda:#e5e7eb;
-  --texto:#111827;
-  --muted:#6b7280;
-  --bg:#ffffff;
-  --radius:14px;
+:root {
+  /* ===== Tema Claro (default) ===== */
+  --fgv-azul: #004B9B;
+  --fgv-azul-escuro: #003a77;
+  --cinza: #f6f7f9;
+  --cinza-borda: #e5e7eb;
+  --texto: #111827;
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --radius: 14px;
   --shadow: 0 6px 20px rgba(0,0,0,.06);
 }
+
+/* ===== Tema Escuro ===== */
+:root.dark {
+  --bg: #1e1e1e;
+  --texto: #f3f4f6;
+  --cinza: #2a2a2a;
+  --cinza-borda: #3a3a3a;
+  --fgv-azul: #3b82f6; /* azul mais claro para contraste */
+  --muted: #9ca3af;
+  --shadow: 0 6px 20px rgba(255,255,255,.05);
+}
+
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
@@ -372,7 +384,184 @@ a:hover{text-decoration: underline;}
 @media (max-height: 420px) and (orientation: landscape){
   .game-container{ transform: translateX(-50%) scale(0.74) !important; }
 }
+/* =========================
+   DARK MODE — REFINOS
+   ========================= */
+:root.dark{
+  /* Paleta mais agradável e homogênea */
+  --bg: #0f141a;               /* fundo de página */
+  --cinza: #161b22;            /* cards/superfícies */
+  --cinza-borda: #232a33;      /* linhas e divisores sutis */
+  --texto: #e7edf3;            /* texto principal */
+  --muted: #a5b1bd;            /* texto secundário */
+  --fgv-azul: #4aa3ff;         /* realce (azul levemente aceso) */
+  --shadow: 0 10px 30px rgba(0,0,0,.45);
+}
+
+/* Header e footer sem “borda artificial” */
+:root.dark .site-header,
+:root.dark .site-footer{
+  background: var(--cinza);
+  border-color: rgba(255,255,255,.06);
+}
+
+/* Cards com elevação suave e borda discreta */
+:root.dark .card{
+  background: var(--cinza);
+  border-color: rgba(255,255,255,.06);
+  box-shadow: var(--shadow);
+}
+
+/* Links com contraste e foco melhor */
+:root.dark a{ color: var(--fgv-azul); }
+:root.dark a:hover{ filter: brightness(1.1); }
+
+/* Botões respeitam o tema */
+:root.dark .btn{ box-shadow: 0 10px 24px rgba(0,0,0,.35); }
+:root.dark .btn-outline{
+  background: transparent;
+  color: var(--fgv-azul);
+  border-color: rgba(255,255,255,.18);
+}
+
+/* Títulos e textos “apagados” do 2048 (corrige baixa opacidade) */
+:root.dark .game-intro,
+:root.dark .game-explanation{ 
+  color: var(--texto) !important;
+  opacity: .92 !important;
+}
+:root.dark .important{ color: #ffffff !important; }
+
+/* Divisores/HR discretos */
+:root.dark hr{ 
+  border: 0; height: 1px; 
+  background: rgba(255,255,255,.08);
+}
+
+/* Placas de pontuação legíveis no escuro */
+:root.dark .scores-container .score-container,
+:root.dark .scores-container .best-container{
+  background: #2563eb !important;     /* azul consistente */
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(37,99,235,.35) !important;
+}
+
+
+/* Leaderboard — deixa a coluna de score mais “presente” */
+:root.dark .lb-list .score{ color:#f1f5f9; }
+:root.dark .lb-list li{ border-bottom: 1px dashed rgba(255,255,255,.05); }
+
+/* Navegação ativa no escuro */
+:root.dark .site-nav a.active{ background: rgba(255,255,255,.06); }
+/* =========================
+   DARK MODE — layout “escuro elegante”
+   ========================= */
+
+/* Fundo geral escuro (página) */
+:root.dark body{
+  background: #0f141a; /* fundo mais profundo */
+}
+
+/* Dark mode: container escuro só na home (index, que usa DIV) */
+:root.dark div.container{
+  background:#121820 !important;
+  border:1px solid rgba(255,255,255,.06) !important;
+  border-radius:14px !important;
+  box-shadow:0 10px 30px rgba(0,0,0,.45) !important;
+}
+
+/* Dark mode: nas páginas que usam MAIN.container, não aplicar fundo */
+:root.dark main.container{
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+
+
+/* Cards com UMA variação de tom dentro do container */
+:root.dark .card{
+  background: #161b22 !important;                    /* um meio-tom acima do container */
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 10px 26px rgba(0,0,0,.38) !important;
+}
+
+/* Header/Footer coerentes e sem bordas “gritando” */
+:root.dark .site-header,
+:root.dark .site-footer{
+  background: #121820 !important;
+  border-color: rgba(255,255,255,.06) !important;
+}
+
+/* Scores continuam legíveis no dark (sem mexer no tabuleiro) */
+:root.dark .scores-container .score-container,
+:root.dark .scores-container .best-container{
+  background: #2563eb !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(37,99,235,.35) !important;
+}
+/* Forçar mensagem de Game Over a ser igual em ambos os temas */
+:root.dark .game-message {
+  background: rgba(238, 228, 218, .73) !important; /* bege translúcido original */
+  color: #776e65 !important;                       /* marrom original */
+  text-shadow: none !important;
+  border: none !important;
+}
+:root.dark .game-message p {
+  color: #776e65 !important; /* garante que o texto interno (Game over!) siga igual */
+}
+:root.dark .game-message .lower a {
+  background: #8f7a66 !important; /* botão marrom */
+  color: #f9f6f2 !important;      /* texto branco */
 
 }
+/* Remove labels duplicados fora do badge */
+.scores-container .score-container::after,
+.scores-container .best-container::after {
+  content: none !important;
+}
+/* Corrigir botão de compartilhamento no modo escuro */
+:root.dark .btn {
+  color: #ffffff !important;   /* força texto branco */
+}
+
+:root.dark .btn-outline {
+  background: transparent !important;
+  color: var(--fgv-azul) !important;
+  border: 1px solid var(--fgv-azul) !important;
+}
+/* Corrige faixa branca no final da página (iOS/Safari) */
+html{
+  background: var(--bg);     /* garante fundo do root */
+  min-height: 100%;
+}
+body{
+  background: var(--bg);     /* já tinha, mas reforçamos */
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;     /* permite “colar” o footer no fim */
+}
+.site-footer{
+  margin-top: auto;           /* empurra o footer pro rodapé se o conteúdo for curto */
+}
+
+/* Em modo escuro, garante raiz escura também */
+:root.dark html,
+:root.dark body{
+  background: #0f141a;
+}
+
+/* (opcional) evita scroll lateral que pode revelar áreas sem pintura */
+html, body{
+  overflow-x: hidden;
+}
+
+
+/* Transição suave ao alternar o tema */
+html, body, .card, .site-header, .site-footer, .grid-container, .grid-cell{
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+
+
 
 
