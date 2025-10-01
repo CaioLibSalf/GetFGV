@@ -1,93 +1,113 @@
-(function(){
+(function () {
   const LIST = document.getElementById('lb-list');
 
-  async function fetchTop5(){
+  // Quantos lugares pedem nome no game over (checa corte do Top 20)
+  const RANK_LIMIT = 20;
+  // Quantos itens exibir na HOME
+  const DISPLAY_LIMIT = 5;
+
+  // --------- Render Top 5 na HOME ---------
+  async function fetchTopHome() {
     if (!window.sb || !LIST) return;
     const { data, error } = await sb
       .from('leaderboard')
       .select('name, score, created_at')
-      .order('score', { ascending:false })
-      .order('created_at', { ascending:true })
-      .limit(5);
+      .order('score', { ascending: false })
+      .order('created_at', { ascending: true })
+      .limit(DISPLAY_LIMIT); // <- só 5 na home
+
     if (error) { console.error(error); return; }
 
-    LIST.innerHTML = data.map((r, i) =>
-      `<li><span class="pos">${i+1}º</span> <span class="name">${escapeHTML(r.name)}</span> <span class="score">${r.score.toLocaleString('pt-BR')}</span></li>`
-    ).join('') || `<li>Ninguém no Top 5 ainda. Seja o primeiro!</li>`;
+    LIST.innerHTML = (data && data.length ? data : []).map((r, i) =>
+      `<li>
+         <span class="pos">${i + 1}º</span>
+         <span class="name">${escapeHTML((r.name || '').trim()) || 'Anônimo'}</span>
+         <span class="score">${Number(r.score || 0).toLocaleString('pt-BR')}</span>
+       </li>`
+    ).join('') || `<li><span class="pos">-</span> <span class="name">Sem registros</span> <span class="score">—</span></li>`;
   }
 
-  // Envia resultado com regra anti-spam local simples
-  async function submitScore(name, score){
-    // Saneamento básico
-    name = (name || '').trim().slice(0,20);
+  // --------- Enviar score ----------
+  async function submitScore(name, score) {
+    name = (name || '').trim().slice(0, 20);
     if (!name) return;
 
-    // Anti-spam client-side (1 envio a cada 30s)
+    // Anti-spam simples: 1 envio a cada 30s
     const now = Date.now();
     const last = +localStorage.getItem('getfgv:lastSubmit') || 0;
-    if (now - last < 30000) { return; }
+    if (now - last < 30000) return;
     localStorage.setItem('getfgv:lastSubmit', String(now));
 
-    // Limitadores de bom senso
-    score = Math.max(0, Math.min(parseInt(score||0,10), 5000000));
+    score = Math.max(0, Math.min(parseInt(score || 0, 10), 5000000));
 
-    try{
+    try {
       const { error } = await sb.from('leaderboard').insert({ name, score });
       if (error) { console.error(error); return; }
-      fetchTop5(); // atualiza a lista após enviar
-    }catch(e){ console.error(e); }
+      // Atualiza a lista da HOME, se existir
+      if (LIST) fetchTopHome();
+    } catch (e) { console.error(e); }
   }
 
-  // Quando o jogo terminar, pergunte o nome e envie
-  window.addEventListener('getfgv:gameover', (ev)=>{
-    let score = 0;
+  // --------- Checar corte Top 20 e pedir nome ----------
+  async function promptAndMaybeSubmit(score) {
+    if (!Number.isFinite(score) || score <= 0) return;
 
-    // Score do evento, se veio
+    try {
+      const { data, error } = await sb
+        .from('leaderboard')
+        .select('score, created_at')
+        .order('score', { ascending: false })
+        .order('created_at', { ascending: true })
+        .limit(RANK_LIMIT);
+
+      if (error) throw error;
+
+      const len = Array.isArray(data) ? data.length : 0;
+
+      if (len < RANK_LIMIT) {
+        askNameAndSubmit(score);
+        return;
+      }
+
+      const twentieth = data[RANK_LIMIT - 1];
+      const cutoff = Number(twentieth?.score ?? 0);
+
+      if (score >= cutoff) {
+        askNameAndSubmit(score);
+      }
+      // else: não entrou no Top 20, não pede nome
+    } catch (e) {
+      console.error('Falha ao checar Top 20; oferecendo envio:', e);
+      askNameAndSubmit(score);
+    }
+  }
+
+  function askNameAndSubmit(score) {
+    const saved = localStorage.getItem('getfgv:name') || '';
+    const name = window.prompt(
+      `Parabéns! Você fez ${score.toLocaleString('pt-BR')} pontos.\nDigite seu nome para entrar no ranking:`,
+      saved
+    );
+    if (!name) return;
+    localStorage.setItem('getfgv:name', name.trim().slice(0, 20));
+    submitScore(name, score);
+  }
+
+  // Evento disparado pelo html_actuator.js quando o jogo termina
+  window.addEventListener('getfgv:gameover', (ev) => {
+    let score = 0;
     if (ev && ev.detail && Number.isFinite(ev.detail.score)) {
       score = ev.detail.score;
     } else {
-      // Fallback: tenta ler do DOM (seu html usa .score-container)
       const el = document.querySelector('.score-container');
-      if (el) score = parseInt(el.textContent.replace(/\D+/g,''),10) || 0;
+      if (el) score = parseInt(el.textContent.replace(/\D+/g, ''), 10) || 0;
     }
-
-    // Só pergunta se o score entra no Top 5 (checagem rápida: pega o 5º e compara)
     promptAndMaybeSubmit(score);
   });
 
-  async function promptAndMaybeSubmit(score){
-    try{
-      // Busca o atual 5º lugar
-      const { data } = await sb
-        .from('leaderboard')
-        .select('score')
-        .order('score', { ascending:false })
-        .limit(1).range(4,4); // pega a 5ª linha (index 4)
-      const fifth = (data && data[0] && data[0].score) || 0;
+  document.addEventListener('DOMContentLoaded', fetchTopHome);
 
-      if (score > 0 && (score > fifth)) {
-        const saved = localStorage.getItem('getfgv:name') || '';
-        const name = window.prompt(`Parabéns! Você fez ${score.toLocaleString('pt-BR')} pontos.\nDigite seu nome para entrar no Top 5:`, saved);
-        if (!name) return;
-        localStorage.setItem('getfgv:name', name.trim().slice(0,20));
-        submitScore(name, score);
-      }
-    }catch(e){
-      // Se der erro na checagem, ainda assim ofereça salvar
-      const saved = localStorage.getItem('getfgv:name') || '';
-      const name = window.prompt(`Parabéns! Você fez ${score.toLocaleString('pt-BR')} pontos.\nDigite seu nome para entrar no ranking:`, saved);
-      if (name) {
-        localStorage.setItem('getfgv:name', name.trim().slice(0,20));
-        submitScore(name, score);
-      }
-    }
-  }
-
-  // Renderiza o Top 5 ao carregar
-  document.addEventListener('DOMContentLoaded', fetchTop5);
-
-  // Util: escapar HTML no nome
-  function escapeHTML(s){
-    return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  function escapeHTML(s) {
+    return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
   }
 })();
