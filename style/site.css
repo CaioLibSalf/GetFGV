@@ -240,6 +240,36 @@ a:hover{text-decoration: underline;}
   justify-content: flex-end;
 }
 
+
+/* ===== Leaderboard ===== */
+.lb-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lb-list li {
+  display: flex;
+  justify-content: space-between; /* separa nome ↔ score */
+  padding: 4px 0;
+}
+
+.lb-list .pos {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.lb-list .name {
+  flex: 1; /* ocupa o espaço do meio */
+}
+
+.lb-list .score {
+  font-weight: 600;
+  min-width: 60px;   /* garante alinhamento em coluna */
+  text-align: right;
+}
+
+
 /* ===== MOBILE LAYOUT FIX ===== */
 @media (max-width: 560px){
 
