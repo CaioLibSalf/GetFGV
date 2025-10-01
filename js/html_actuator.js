@@ -31,6 +31,17 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
         self.message(true); // You win!
       }
     }
+      // Dispara evento quando o jogo acabar (game over)
+    try {
+      if (metadata && metadata.over) {
+        window.dispatchEvent(new CustomEvent('getfgv:gameover', {
+          detail: { score: metadata.score || 0 }
+        }));
+      }
+    } catch (e) {
+      console.error("Erro ao disparar evento de gameover:", e);
+  }
+
 
   });
 };
