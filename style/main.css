@@ -735,7 +735,19 @@ a.link-azul {
 .site-footer a:hover{
   text-decoration: underline;
 }
+/* ===== Padronização do tamanho da fonte da navegação ===== */
+.site-nav{ --nav-fs:16px; }
 
+/* Regras com maior especificidade para vencer estilos globais */
+header.site-header .site-nav a,
+header.site-header .site-nav a.active,
+header.site-header .site-nav a:focus-visible{
+  font-size: var(--nav-fs) !important;
+  line-height: 1.35 !important;   /* altura consistente */
+  font-weight: 600;                /* igual em todas as páginas */
+}
 
-
-
+/* Responsivo (opcional) */
+@media (max-width: 560px){
+  .site-nav{ --nav-fs:15px; }
+}
