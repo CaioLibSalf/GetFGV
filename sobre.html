@@ -25,8 +25,20 @@
 <a href="/convite.html" id="nav-convite">Convite</a>
 <a href="/politica.html" id="nav-priv">Privacidade</a>
 <a href="/leaderboard.html" id="nav-priv">Leaderboard</a>
-<button id="theme-toggle" class="btn btn-outline" style="margin-left:12px" aria-label="Alternar tema" title="Alternar tema">🌙/☀️</button>
-
+<button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema" aria-pressed="false">
+  <span class="track"></span>
+  <span class="knob">
+    <!-- sol -->
+    <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 4.5V2m0 20v-2.5M4.5 12H2m20 0h-2.5M5.6 5.6 4 4m16 16-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
+    </svg>
+    <!-- lua -->
+    <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M21 12.4A8.6 8.6 0 1 1 11.6 3a7 7 0 1 0 9.4 9.4Z" fill="currentColor"/>
+    </svg>
+  </span>
+</button>
 </nav>
 </div>
 </header>
@@ -84,15 +96,22 @@
 </nav>
 <script>
   (function(){
-    const btn = document.getElementById("theme-toggle");
+    const btn  = document.getElementById('theme-toggle');
     const root = document.documentElement;
-    if (localStorage.getItem("theme") === "dark") root.classList.add("dark");
-    if (btn){
-      btn.addEventListener("click", () => {
-        root.classList.toggle("dark");
-        localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
-      });
-    }
+
+    // estado inicial (localStorage → fallback para prefers-color-scheme)
+    const saved = localStorage.getItem('theme');
+    const initial = saved ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (initial === 'dark') root.classList.add('dark');
+    btn.setAttribute('aria-pressed', initial === 'dark' ? 'true' : 'false');
+
+    // alternar
+    btn.addEventListener('click', () => {
+      const nowDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+      btn.setAttribute('aria-pressed', nowDark ? 'true' : 'false');
+      // ícones e animação já são controlados pelo CSS via :root.dark
+    });
   })();
 </script>
 
