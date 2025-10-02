@@ -696,7 +696,22 @@ html, body, .card, .site-header, .site-footer, .grid-container, .grid-cell{
     font-size: 15px;
     padding: 8px 10px;
   }
+/* Faz o wrapper da página ignorar as larguras do main.css (.container do 2048) */
+body > div.container {
+  width: auto !important;              /* desfaz width fixa do main.css */
+  max-width: 920px !important;         /* sua largura de página */
+  margin: 28px auto !important;
+  padding: 0 16px !important;
 }
+
+/* Dark mode desse wrapper (se você usa) */
+:root.dark body > div.container{
+  background: #121820 !important;
+  border: 1px solid rgba(255,255,255,.06) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.45) !important;
+}
+
 
 
 
