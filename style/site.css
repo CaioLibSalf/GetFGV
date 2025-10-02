@@ -569,10 +569,100 @@ div.container{
   overflow: hidden;
 }
 
+/* === Toggle com BORDA DEGRADÊ arredondada (sem border-image) === */
+.theme-toggle{
+  --w: 56px;         /* largura total */
+  --h: 30px;         /* altura total  */
+  --bw: 2px;         /* espessura da borda */
+  --pad: 2px;        /* respiro interno p/ a bolinha */
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 999px;
+  border: var(--bw) solid transparent;   /* borda "vazia" */
+  padding: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent;
+  overflow: hidden;                       /* clippa tudo no raio */
+
+  /* 2 backgrounds:
+     - camada 1 (padding-box): transparente (deixa a trilha aparecer)
+     - camada 2 (border-box):  degradê que desenha a borda arredondada
+  */
+  background:
+    linear-gradient(#0000, #0000) padding-box,
+    linear-gradient(180deg,#ffd08a,#ff8a5c) border-box;   /* modo claro */
+}
+/* modo escuro: borda acompanha o degradê azul da bolinha */
+:root.dark .theme-toggle{
+  background:
+    linear-gradient(#0000, #0000) padding-box,
+    linear-gradient(180deg,#6bb2ff,#4b7bff) border-box;
+}
+.theme-toggle .track{
+  position: absolute; inset: 0; border-radius: inherit;
+  background: linear-gradient(90deg,#ffb86c,#ff6b6b);
+  opacity: .22; transition: background .3s, opacity .3s;
+}
+:root.dark .theme-toggle .track{
+  background: linear-gradient(90deg,#4aa3ff,#5f5cff); opacity: .28;
+}
+.theme-toggle .knob {
+  position: absolute;
+  top: -1px; /* encosta quase na borda */
+  left: -0.5px;
+  width: calc(var(--h) - 1px);
+  height: calc(var(--h) - 1px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg,#ffd08a,#ff8a5c);
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: transform .28s cubic-bezier(.4,0,.2,1), background .3s;
+}
+
+:root.dark .theme-toggle .knob {
+  background: linear-gradient(180deg,#6bb2ff,#4b7bff);
+  transform: translateX(calc(var(--w) - var(--h)));
+}
+
+.theme-toggle .icon{ width: 16px; height: 16px; color: #fff }
+.theme-toggle .icon.moon{ display: none; }
+:root.dark .theme-toggle .icon.sun{ display: none; }
+:root.dark .theme-toggle .icon.moon{ display: block; }
+
+/* opcional: cor do contorno do botão de acordo com o tema */
+.theme-toggle{ color: var(--fgv-azul); }
+:root.dark .theme-toggle{ color: #4aa3ff; }
+
+/* Nav sempre alinhada verticalmente */
+.site-header .site-nav{
+  display:flex;
+  align-items:center;
+  gap:8px;            /* espaço entre os links */
+}
+
+/* Espaço do toggle em relação aos links */
+.theme-toggle{ margin-left: 10px; vertical-align: middle; }
+
 
 /* Transição suave ao alternar o tema */
 html, body, .card, .site-header, .site-footer, .grid-container, .grid-cell{
   transition: background-color .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+/* Padroniza a tipografia do header em TODAS as páginas */
+.site-header { font-size: 16px !important; }   /* neutraliza o 18px do main.css */
+
+.site-header .brand .title{
+  font-size: 20px !important;   /* ajuste fino do “GetFGV” */
+  line-height: 1.2 !important;
+  font-weight: 800;
+}
+
+.site-header .site-nav a{
+  font-size: 16px !important;   /* links do menu */
+  line-height: 1.35 !important;
 }
 
 
