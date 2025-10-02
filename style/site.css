@@ -665,6 +665,42 @@ html, body, .card, .site-header, .site-footer, .grid-container, .grid-cell{
   line-height: 1.35 !important;
 }
 
+/* ===== Navegação em duas linhas no mobile ===== */
+.site-header .site-nav{
+  display:flex;
+  align-items:center;
+  gap: 14px 18px;        /* linha x coluna */
+  flex-wrap: wrap;       /* permite quebrar linha */
+}
+
+/* quebra de linha "virtual" depois dos 4 primeiros links */
+@media (max-width: 520px){
+  .site-header .site-nav::after{
+    content:""; 
+    flex-basis: 100%;    /* força nova linha */
+    order: 1;            /* aparece antes dos itens da 2ª linha */
+  }
+
+  /* Primeira linha: Início, Sobre, Convite, Privacidade */
+  .site-header .site-nav a{ order: 0; }
+
+  /* Segunda linha: Leaderboard + toggle */
+  #nav-leader{ order: 2; }
+  .theme-toggle{ 
+    order: 2; 
+    margin-left: auto;   /* vai para a direita da 2ª linha */
+  }
+
+  /* pequenos ajustes de tamanho/espacamento no mobile */
+  .site-header .site-nav a{
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+}
+
+
+
+
 
 
 
