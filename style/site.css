@@ -555,6 +555,19 @@ body{
 html, body{
   overflow-x: hidden;
 }
+/* Container principal da home (modo claro) com cantos arredondados */
+div.container{
+  border-radius: 14px;                  /* arredonda bordas */
+  overflow: hidden;                     /* esconde a faixa azul pontuda */
+  box-shadow: 0 6px 20px rgba(0,0,0,.06); /* mantém leve sombra */
+}
+
+/* Se quiser arredondar só em cima (não embaixo): */
+div.container{
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  overflow: hidden;
+}
 
 
 /* Transição suave ao alternar o tema */
