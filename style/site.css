@@ -696,6 +696,7 @@ html, body, .card, .site-header, .site-footer, .grid-container, .grid-cell{
     font-size: 15px;
     padding: 8px 10px;
   }
+}
 /* Faz o wrapper da página ignorar as larguras do main.css (.container do 2048) */
 body > div.container {
   width: auto !important;              /* desfaz width fixa do main.css */
