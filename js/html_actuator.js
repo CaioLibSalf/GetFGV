@@ -23,6 +23,24 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
     self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
+    
+        // === PROGRESSÃO: descobrir o maior tile e avisar a barra ===
+    try {
+      var max = 0;
+      for (var x = 0; x < grid.size; x++) {
+        for (var y = 0; y < grid.size; y++) {
+          var cell = grid.cells[x][y];
+          if (cell && cell.value > max) max = cell.value;
+        }
+      }
+      if (window.Progression && max) {
+        window.Progression.setByValue(max);
+      }
+    } catch (e) {
+      // opcional: console.warn('progression error', e);
+    }
+    // === FIM PROGRESSÃO ===
+
 
     if (metadata.terminated) {
       if (metadata.over) {
