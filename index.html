@@ -125,6 +125,11 @@
 
         <div class="tile-container"></div>
       </div>
+      <section class="fgv-progress" aria-label="Progresso de faculdades">
+        <div class="fgv-progress__rail">
+          <ul class="fgv-progress__list" id="fgv-progress-list"></ul>
+        </div>
+      </section>
 
       <p class="game-explanation">
         <strong class="important">Como jogar:</strong> Use as
@@ -191,6 +196,69 @@
   const id = map[path];
   if (id){ const el = document.getElementById(id); if (el) el.classList.add('active'); }
 </script>
+
+<script>
+/** ===== Config ===== */
+const FACULDADES = [
+  { id: 2,  nome: "insper",     img: "img/insper.jpeg" },     // pior (começa liberada)
+  { id: 4,  nome: "USP",       img: "img/usp.jpg" },
+  { id: 8,  nome: "Ibmec",  img: "img/ibmec.png" },
+  { id: 16, nome: "FAAP",       img: "img/faap.png" },
+  { id: 32, nome: "espm",      img: "img/espm.png" },
+  { id: 64, nome: "mackenzie",    img: "img/mack.png" },
+  { id: 128, nome: "uninove",    img: "img/uninove.png" },
+  { id: 256, nome: "ita",    img: "img/ita.png" },
+  { id: 512, nome: "yale",    img: "img/yale.png" },
+  { id: 1024, nome: "harvard",    img: "img/harvard.png" },
+  { id: 2048,nome: "FGV",        img: "img/fgv.jpg" }
+];
+// OBS: id aqui é o "valor" da tile do 2048 (2,4,8,...). Ajuste às suas peças.
+
+/** ===== Render inicial ===== */
+const $list = document.getElementById('fgv-progress-list');
+function renderProgress(unlockedIndex){
+  $list.innerHTML = "";
+  FACULDADES.forEach((f, i) => {
+    const li = document.createElement('li');
+    li.className = 'fgv-progress__item' + (i > unlockedIndex ? ' is-locked' : '');
+    li.title = f.nome;
+    const img = document.createElement('img');
+    img.alt = f.nome; img.src = f.img;
+    li.appendChild(img);
+    $list.appendChild(li);
+  });
+}
+function saveUnlocked(idx){ localStorage.setItem('fgv_unlock_idx', String(idx)); }
+function loadUnlocked(){ return Number(localStorage.getItem('fgv_unlock_idx') ?? 0); }
+
+let unlockedIdx = loadUnlocked(); // começa do salvo
+renderProgress(unlockedIdx);
+
+/** ===== API pública para o jogo avisar progresso =====
+ *  Recebe o MAIOR valor de tile atual (ex.: 32), e desbloqueia
+ *  tudo até a posição correspondente no FACULDADES.
+ */
+window.Progression = {
+  setByValue(tileValue){
+    // acha o último índice <= tileValue
+    let idx = -1;
+    for (let i=0;i<FACULDADES.length;i++){
+      if (tileValue >= FACULDADES[i].id) idx = i;
+    }
+    if (idx > unlockedIdx){
+      unlockedIdx = idx;
+      saveUnlocked(unlockedIdx);
+      // re-render com classe de “desbloqueado agora”
+      renderProgress(unlockedIdx);
+      // dá um pop no último
+      const last = $list.children[unlockedIdx];
+      if (last){ last.classList.add('just-unlocked'); setTimeout(()=>last.classList.remove('just-unlocked'), 600); }
+      
+    }
+  }
+};
+</script>
+
 
 <script>
   (function(){
