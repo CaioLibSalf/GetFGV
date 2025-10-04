@@ -859,4 +859,56 @@ body > div.container {
   animation: fgv-glow 1.5s infinite ease-in-out;
   border-color: #3ba9ff !important;  /* azul mais vibrante */
 }
-  
+
+/* ===== Ajustes SOMENTE para celular ===== */
+@media (max-width: 520px){
+
+  /* Evita scroll lateral apenas no mobile */
+  html, body { overflow-x: hidden; }
+
+  /* Barra de progresso não pode estourar a tela */
+  .fgv-progress{
+    margin: 16px 0 20px;
+    max-width: 100%;
+    overflow: hidden;             /* nada sai do container */
+  }
+
+  .fgv-progress__rail{
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 28px;
+  }
+
+  /* A lista (bolinhas) é quem rola na horizontal no mobile */
+  .fgv-progress__list{
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;  /* rolagem suave no iOS */
+    padding: 10px 6px 12px;
+    margin-right: 0;
+  }
+
+  /* Tamanho seguro das bolinhas no mobile */
+  .fgv-progress__item{
+    flex: 0 0 auto;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  /* Imagem sempre preenche o círculo */
+  .fgv-progress__item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* Se ainda existir a “ponta” da seta, esconda no mobile apenas */
+  .fgv-progress__rail::after{ display: none; }
+}
+
