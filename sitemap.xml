@@ -26,4 +26,9 @@
     <priority>0.9</priority>
   </url>
 
+  <url>
+    <loc>https://getfgv.com.br/contato.html</loc>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
