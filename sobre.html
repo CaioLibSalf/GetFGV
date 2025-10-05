@@ -1,50 +1,34 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-    <meta charset="utf-8"/>
-    <title>Sobre o GetFGV — história, objetivo e como foi feito</title>
-    <meta content="Conheça o GetFGV: um jogo inspirado no 2048, customizado com faculdades brasileiras. Saiba a história, o objetivo do projeto, como jogar e o que vem por aí." name="description"/>
-    <link href="https://getfgv.com.br/sobre.html" rel="canonical"/>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879470203997450"
-        crossorigin="anonymous"></script>
-    <meta content="Sobre o GetFGV" property="og:title"/>
-    <meta content="História, objetivo, como jogar, créditos e roadmap do projeto." property="og:description"/>
-    <meta content="https://getfgv.com.br/sobre.html" property="og:url"/>
-    <meta content="website" property="og:type"/>
-    <link href="style/site.css" rel="stylesheet"/>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8"/>
+  <title>Sobre o GetFGV — história, objetivo e como foi feito</title>
+  <meta name="description" content="Conheça o GetFGV: história do projeto, propósito educacional, como jogar, tecnologia usada e próximos passos.">
+  <link rel="canonical" href="https://getfgv.com.br/sobre.html"/>
+  <meta property="og:title" content="Sobre o GetFGV"/>
+  <meta property="og:description" content="História, objetivo, como jogar, créditos e roadmap do projeto."/>
+  <meta property="og:url" content="https://getfgv.com.br/sobre.html"/>
+  <meta property="og:type" content="website"/>
+  <!-- AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879470203997450" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style/site.css"/>
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/">
-      <img src="img/fgv-logo.jpg" alt="FGV" style="height:40px; width:auto; border-radius:8px; margin-right:8px;">
-      <span class="title">GetFGV</span>
-    </a>
-
+    <a class="brand" href="/"><img src="img/fgv-logo.jpg" alt="FGV" style="height:40px; width:auto; border-radius:8px; margin-right:8px;"><span class="title">GetFGV</span></a>
     <nav class="site-nav" aria-label="Navegação principal">
       <a href="/index.html" id="nav-inicio">Início</a>
       <a href="/sobre.html" id="nav-sobre" class="active">Sobre</a>
       <a href="/convite.html" id="nav-convite">Convite</a>
       <a href="/politica.html" id="nav-priv">Privacidade</a>
       <a href="/leaderboard.html" id="nav-leader">Leaderboard</a>
-
-      <!-- Botão de alternância de tema -->
+      <a href="/contato.html" id="nav-contato">Contato</a>
       <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema" aria-pressed="false">
-        <span class="track"></span>
-        <span class="knob">
-          <!-- Sol -->
-          <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 4.5V2m0 20v-2.5M4.5 12H2m20 0h-2.5M5.6 5.6 4 4m16 16-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6"
-                  stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <circle cx="12" cy="12" r="4.5" fill="currentColor"/>
-          </svg>
-          <!-- Lua -->
-          <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 12.4A8.6 8.6 0 1 1 11.6 3a7 7 0 1 0 9.4 9.4Z" fill="currentColor"/>
-          </svg>
+        <span class="track"></span><span class="knob">
+          <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V2m0 20v-2.5M4.5 12H2m20 0h-2.5M5.6 5.6 4 4m16 16-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="4.5" fill="currentColor"/></svg>
+          <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.4A8.6 8.6 0 1 1 11.6 3a7 7 0 1 0 9.4 9.4Z" fill="currentColor"/></svg>
         </span>
       </button>
     </nav>
@@ -53,75 +37,141 @@
 
 <main class="container">
 
-<section class="card">
-<h2>O que é o GetFGV?</h2>
-<p>
-      O <strong>GetFGV</strong> é um projeto independente que transforma o clássico 2048
-      em uma versão temática com faculdades brasileiras (e algumas americanas). A ideia é proporcionar
-      <em>diversão leve</em> para quem gosta de desafios lógicos e, ao mesmo tempo,
-      aproximar o público do universo universitário.
+  <section class="card">
+    <h2>O que é o GetFGV?</h2>
+    <p>
+      O <strong>GetFGV</strong> é um projeto independente que transforma o clássico jogo 2048
+      em uma experiência temática com faculdades brasileiras (e algumas internacionais). A proposta
+      é unir <em>diversão casual</em> e <em>aprendizado leve</em> sobre o universo universitário:
+      ao combinar peças e subir de nível, o jogador encontra logos e nomes de instituições que fazem
+      parte do imaginário de quem curte vestibular, carreira e educação superior.
     </p>
-</section>
-<section class="card">
-<h2>Como jogar</h2>
-<ol>
-<li>Use as setas do teclado (ou gestos no celular) para mover as peças.</li>
-<li>Quando duas peças iguais se encontram, elas se combinam e evoluem.</li>
-<li>O objetivo é chegar às peças de maior valor (e pontuação!).</li>
-</ol>
-<p>Dica: planeje movimentos para não “travar” o tabuleiro 😉.</p>
-</section>
-<section class="card">
-<h2>O que torna o projeto diferente</h2>
-<ul>
-<li>Arte e mapeamento de tiles personalizados.</li>
-<li>Ajustes de jogabilidade e interface pensados para mobile.</li>
-<li>Conteúdos editoriais (nesta seção e no site) que explicam o jogo e o contexto.</li>
-</ul>
-</section>
-<section class="card">
-<h2>Roadmap (próximas melhorias)</h2>
-<ul>
-<li>Modo desafio com metas e tempo.</li>
-</ul>
-</section>
-<section class="card">
-<h2>Créditos e avisos</h2>
-<p>
-      Projeto criado por <strong>Caio Salfatis</strong>. O jogo é inspirado no 2048 original,
-      e esta é uma adaptação temática para fins de entretenimento.
+    <p>
+      Diferente de um site puramente recreativo, o GetFGV apresenta conteúdo editorial
+      e informativo. Nesta página, você encontra a história do projeto, o propósito educacional,
+      detalhes de como foi feito e o que estamos planejando adiante.
     </p>
-<p>
-      Marcas e logos podem ser propriedade de seus respectivos titulares.
+  </section>
+
+  <section class="card">
+    <h2>Por que criei o projeto</h2>
+    <p>
+      Sempre gostei do 2048 pela simplicidade de regras e profundidade estratégica. Reimaginar o jogo
+      com “tiles” de faculdades aproxima lógica e cultura acadêmica. Além de entreter, o GetFGV
+      estimula planejamento de jogadas, percepção de padrões, noção de risco/recompensa e disciplina —
+      habilidades úteis dentro e fora da sala de aula.
     </p>
-</section>
-<footer>
-<small>© <span id="y"></span> GetFGV — Todos os direitos reservados.</small>
-<nav>
-<a href="/sobre.html">Sobre</a> ·
+    <p>
+      O site também serve como laboratório de front-end: performance, responsividade, dark mode,
+      acessibilidade e SEO. Tudo isso faz parte de um objetivo maior: construir um produto público,
+      estável e <em>family-friendly</em>, apto a participar de programas de monetização com anúncios,
+      sem comprometer a experiência do usuário.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Como jogar</h2>
+    <ol>
+      <li><strong>Mova</strong> as peças com as setas do teclado (ou gestos no celular).</li>
+      <li><strong>Combine</strong> duas peças iguais para evoluir para o próximo nível.</li>
+      <li><strong>Planeje</strong> para não travar o tabuleiro — priorize manter uma “linha forte”.</li>
+    </ol>
+    <p class="muted">
+      Observação: a sequência de faculdades é uma escolha temática para o jogo, não representa ranking oficial.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Como foi feito (tecnologia)</h2>
+    <ul>
+      <li><strong>Front-end:</strong> HTML, CSS (design próprio em <code>style/site.css</code>) e JavaScript.</li>
+      <li><strong>Base do jogo:</strong> lógica inspirada no 2048 original, adaptada para imagens/logos.</li>
+      <li><strong>Leaderboard:</strong> integração via Supabase para registrar e exibir as melhores pontuações.</li>
+      <li><strong>Desempenho:</strong> foco em leveza, carregamento rápido e compatibilidade mobile.</li>
+      <li><strong>Privacidade:</strong> política clara, sem coleta de dados sensíveis; ranking exibe apenas nome e pontuação.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Valor educacional</h2>
+    <p>
+      Além do entretenimento, o GetFGV dialoga com temas de tomada de decisão e
+      raciocínio sequencial. Ao subir de nível, o jogador observa consequências de escolhas
+      locais no resultado global do tabuleiro — um paralelo simples com estratégias do cotidiano
+      (organização de estudos, uso do tempo, priorização de tarefas).
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>Créditos e avisos</h2>
+    <p>
+      Projeto criado por <strong>Caio Salfatis</strong>. O jogo é inspirado no 2048 original
+      e esta é uma adaptação temática para fins de entretenimento e educação leve.
+      Marcas e logos exibidos podem ser propriedade de seus respectivos titulares.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>FAQ (perguntas frequentes)</h2>
+    <p><strong>Vocês coletam dados pessoais?</strong><br>
+      Apenas o necessário para funcionalidades do site (ex.: nome no ranking, se enviado por você).
+      Consulte a <a href="/politica.html">Política de Privacidade</a> para detalhes e direitos (LGPD).
+    </p>
+    <p><strong>Posso sugerir novas faculdades ou modos de jogo?</strong><br>
+      Sim! Envie sua ideia pela página de <a href="/contato.html">Contato</a>.
+    </p>
+    <p><strong>Como entrar no ranking?</strong><br>
+      Se a sua pontuação estiver entre as melhores, o jogo solicitará um nome para publicar no
+      <a href="/leaderboard.html">Leaderboard</a>. Use apelido se preferir.
+    </p>
+  </section>
+
+
+
+  <section class="card">
+    <h2>Roadmap</h2>
+    <ul>
+      <li>Modo desafio com metas e tempo;</li>
+      <li>Melhorias de acessibilidade (atalhos e feedbacks sonoros opcionais);</li>
+      <li>Mais conteúdo editorial leve sobre universidades e estudos.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <small>© <span id="y"></span> GetFGV — Todos os direitos reservados.</small>
+    <nav>
+      <a href="/sobre.html">Sobre</a> ·
       <a href="/convite.html">Convite</a> ·
       <a href="/politica.html">Privacidade</a> ·
-      <a href="/leaderboard.html" id="nav-priv">Leaderboard</a>
-</nav>
+      <a href="/leaderboard.html">Leaderboard</a> ·
+      <a href="/contato.html">Contato</a>
+    </nav>
+  </div>
+</footer>
+
 <script>
+  // Ano + nav ativo
+  document.getElementById('y').textContent = new Date().getFullYear();
   (function(){
-    const btn  = document.getElementById('theme-toggle');
-    const root = document.documentElement;
+    const map = {'/':'nav-inicio','/index.html':'nav-inicio','/sobre.html':'nav-sobre','/convite.html':'nav-convite','/politica.html':'nav-priv','/leaderboard.html':'nav-leader','/contato.html':'nav-contato'};
+    const el = document.getElementById(map[location.pathname]); if(el) el.classList.add('active');
+  })();
 
-    // estado inicial (localStorage → fallback para prefers-color-scheme)
+  // Toggle tema
+  (function(){
+    const btn = document.getElementById('theme-toggle'); const root = document.documentElement;
     const saved = localStorage.getItem('theme');
-    const initial = saved ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const initial = saved ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light');
     if (initial === 'dark') root.classList.add('dark');
-    btn.setAttribute('aria-pressed', initial === 'dark' ? 'true' : 'false');
-
-    // alternar
-    btn.addEventListener('click', () => {
+    btn.setAttribute('aria-pressed', initial === 'dark' ? 'true':'false');
+    btn.addEventListener('click', ()=> {
       const nowDark = root.classList.toggle('dark');
-      localStorage.setItem('theme', nowDark ? 'dark' : 'light');
-      btn.setAttribute('aria-pressed', nowDark ? 'true' : 'false');
-      // ícones e animação já são controlados pelo CSS via :root.dark
+      localStorage.setItem('theme', nowDark ? 'dark':'light');
+      btn.setAttribute('aria-pressed', nowDark ? 'true':'false');
     });
   })();
 </script>
-
-</footer></main></body></html>
+</body>
+</html>

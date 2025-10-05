@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta charset="utf-8"/>
+  <title>Contato — GetFGV</title>
+  <meta name="description" content="Fale com o GetFGV: dúvidas, sugestões, parceria e suporte.">
+  <link rel="canonical" href="https://getfgv.com.br/contato.html"/>
+  <!-- AdSense (ok manter global em todas as páginas) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9879470203997450" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style/site.css" />
+  <style>
+    /* leve aprimoramento visual dos campos usando sua paleta */
+    .form-grid{ display:grid; gap:12px }
+    .form-row{ display:grid; gap:6px }
+    .input, .textarea, .select{
+      width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--cinza-borda);
+      background:#fff; color:var(--texto); font:inherit; outline:none;
+      box-shadow: var(--shadow);
+    }
+    .textarea{ min-height:140px; resize:vertical }
+    .hint{ color:var(--muted); font-size:14px }
+    .success{ padding:12px; border-radius:12px; background:#ecfdf5; border:1px solid #a7f3d0; color:#065f46; display:none }
+    .error  { padding:12px; border-radius:12px; background:#fef2f2; border:1px solid #fecaca; color:#991b1b; display:none }
+    /* dark */
+    :root.dark .input, :root.dark .textarea, :root.dark .select{ background:#0f141a; border-color:#232a33; color:#e7edf3 }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="img/fgv-logo.jpg" alt="FGV" style="height:40px; width:auto; border-radius:8px; margin-right:8px;"><span class="title">GetFGV</span></a>
+    <nav aria-label="Navegação principal" class="site-nav">
+      <a href="/" id="nav-inicio">Início</a>
+      <a href="/sobre.html" id="nav-sobre">Sobre</a>
+      <a href="/convite.html" id="nav-convite">Convite</a>
+      <a href="/politica.html" id="nav-priv">Privacidade</a>
+      <a href="/leaderboard.html" id="nav-leader">Leaderboard</a>
+      <a href="/contato.html" id="nav-contato" class="active">Contato</a>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema" aria-pressed="false">
+        <span class="track"></span><span class="knob">
+          <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5V2m0 20v-2.5M4.5 12H2m20 0h-2.5M5.6 5.6 4 4m16 16-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="12" r="4.5" fill="currentColor"/></svg>
+          <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.4A8.6 8.6 0 1 1 11.6 3a7 7 0 1 0 9.4 9.4Z" fill="currentColor"/></svg>
+        </span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <section class="card">
+    <h1>Fale com o GetFGV</h1>
+    <p class="muted">Dúvidas, sugestões, parcerias ou reporte de bugs — respondo o quanto antes.</p>
+
+    <div id="ok" class="success">Mensagem criada no seu e-mail. Se não abriu automaticamente, copie o texto e envie para <strong>contato@getfgv.com.br</strong>.</div>
+    <div id="err" class="error">Não consegui abrir seu app de e-mail. Você pode enviar manualmente para <strong>contato@getfgv.com.br</strong>.</div>
+
+    <form id="f" class="form-grid" autocomplete="on" novalidate>
+      <div class="form-row">
+        <label for="nome">Nome</label>
+        <input class="input" type="text" id="nome" name="nome" required placeholder="Seu nome" />
+      </div>
+      <div class="form-row">
+        <label for="email">E-mail</label>
+        <input class="input" type="email" id="email" name="email" required placeholder="voce@exemplo.com" />
+      </div>
+      <div class="form-row">
+        <label for="assunto">Assunto</label>
+        <select class="select" id="assunto" name="assunto" required>
+          <option value="" selected disabled>Selecione…</option>
+          <option>Suporte ao jogo</option>
+          <option>Sugestão de melhoria</option>
+          <option>Parceria</option>
+          <option>Privacidade/Dados (LGPD)</option>
+          <option>Outro</option>
+        </select>
+      </div>
+      <div class="form-row" style="display:none">
+        <!-- honeypot anti-spam -->
+        <label for="hp">Deixe em branco</label>
+        <input class="input" type="text" id="hp" name="hp" value=""/>
+      </div>
+      <div class="form-row">
+        <label for="msg">Mensagem</label>
+        <textarea class="textarea" id="msg" name="mensagem" required placeholder="Como posso ajudar?"></textarea>
+        <div class="hint">Ao enviar, você autoriza contato para tratativa. Consulte a <a href="/politica.html">Política de Privacidade</a>.</div>
+      </div>
+      <div class="form-row" style="margin-top:8px">
+        <button class="btn" type="submit">Enviar</button>
+        <button class="btn btn-outline" type="reset">Limpar</button>
+      </div>
+    </form>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <small>© <span id="y"></span> GetFGV — Todos os direitos reservados.</small>
+    <nav>
+      <a href="/sobre.html">Sobre</a> ·
+      <a href="/convite.html">Convite</a> ·
+      <a href="/politica.html">Privacidade</a> ·
+      <a href="/leaderboard.html">Leaderboard</a> ·
+      <a href="/contato.html" id="nav-contato">Contato</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  // Ano + nav ativo
+  document.getElementById('y').textContent = new Date().getFullYear();
+  (function(){
+    const map = {'/':'nav-inicio','/index.html':'nav-inicio','/sobre.html':'nav-sobre','/convite.html':'nav-convite','/politica.html':'nav-priv','/leaderboard.html':'nav-leader','/contato.html':'nav-contato'};
+    const el = document.getElementById(map[location.pathname]); if(el) el.classList.add('active');
+  })();
+
+  // Toggle tema
+  (function(){
+    const btn = document.getElementById('theme-toggle'); const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    const initial = saved ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark':'light');
+    if (initial === 'dark') root.classList.add('dark');
+    btn.setAttribute('aria-pressed', initial === 'dark' ? 'true':'false');
+    btn.addEventListener('click', ()=> {
+      const nowDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', nowDark ? 'dark':'light');
+      btn.setAttribute('aria-pressed', nowDark ? 'true':'false');
+    });
+  })();
+
+  // Form: gera e-mail via mailto (sem backend)
+  document.getElementById('f').addEventListener('submit', function(e){
+    e.preventDefault();
+    const hp = document.getElementById('hp').value.trim();
+    if (hp) return; // bot bloqueado
+    const nome = document.getElementById('nome').value.trim();
+    const email= document.getElementById('email').value.trim();
+    const assunto = document.getElementById('assunto').value;
+    const msg = document.getElementById('msg').value.trim();
+
+    if (!nome || !email || !assunto || !msg) { alert('Preencha todos os campos.'); return; }
+
+    const to = 'csalfatis@gmail.com'; // 🔁 troque para o seu e-mail real
+    const subject = encodeURIComponent(`[GetFGV] ${assunto} — ${nome}`);
+    const body = encodeURIComponent(`Nome: ${nome}\nE-mail: ${email}\nAssunto: ${assunto}\n\nMensagem:\n${msg}\n\n—\nEnviado via contato.html do GetFGV`);
+    const href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+    try{
+      window.location.href = href;
+      document.getElementById('ok').style.display = 'block';
+    }catch{
+      document.getElementById('err').style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
