@@ -78,7 +78,7 @@ const THEMES = {
       { id: 128, nome: "ITA",       img: "img/ita.png" },
       { id: 256, nome: "Yale",      img: "img/yale.png" },
       { id: 512, nome: "Harvard",   img: "img/harvard.png" },
-      { id: 1024,nome: "FGV",       img: "img/fgv.jgp" },
+      { id: 1024,nome: "FGV",       img: "img/fgv.jpg" },
       { id: 2048,nome: "ESPM",      img: "img/espm.png" },
       { id: 4096,nome: "dinheiro",  img: "img/dinheiro.png" }
     ]
