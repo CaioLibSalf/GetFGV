@@ -91,6 +91,33 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
+
+  // === NOVO BLOCO: definir imagem do tema na tile ===
+  try {
+    if (window.GetFGVThemes && typeof window.GetFGVThemes.getImageForValue === "function") {
+      var url = window.GetFGVThemes.getImageForValue(tile.value);
+      var rotulo = (window.GetFGVThemes.getNameForValue && window.GetFGVThemes.getNameForValue(tile.value)) || "";
+      if (url) {
+        inner.style.backgroundImage = 'url("' + url + '")';
+        inner.style.backgroundSize = "cover";
+        inner.style.backgroundPosition = "center";
+        inner.style.backgroundRepeat = "no-repeat";
+        inner.setAttribute("aria-label", rotulo);
+        inner.title = rotulo;
+        inner.textContent = "";
+      } else {
+        inner.style.backgroundImage = "";
+        inner.textContent = tile.value;
+      }
+    } else {
+      inner.textContent = tile.value;
+    }
+  } catch (e) {
+    // fallback silencioso caso themes.js não esteja presente
+    inner.textContent = tile.value;
+  }
+  // === FIM BLOCO NOVO ===
+
   //inner.textContent = tile.value;
 
   if (tile.previousPosition) {
