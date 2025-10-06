@@ -64,6 +64,26 @@ const THEMES = {
     ]
   },
 
+  espm: {
+    id: "espm",
+    label: "ESPM",
+    goalName: "ESPM",
+    items: [
+      { id: 2,   nome: "Insper",    img: "img/insper.jpeg" },
+      { id: 4,   nome: "USP",       img: "img/usp.jpg" },
+      { id: 8,   nome: "Ibmec",     img: "img/ibmec.png" },
+      { id: 16,  nome: "FAAP",      img: "img/faap.png" },
+      { id: 32,  nome: "Mackenzie", img: "img/mack.png" },
+      { id: 64,  nome: "Uninove",   img: "img/uninove.png" },
+      { id: 128, nome: "ITA",       img: "img/ita.png" },
+      { id: 256, nome: "Yale",      img: "img/yale.png" },
+      { id: 512, nome: "Harvard",   img: "img/harvard.png" },
+      { id: 1024,nome: "FGV",       img: "img/fgv.jgp" },
+      { id: 2048,nome: "ESPM",      img: "img/espm.png" },
+      { id: 4096,nome: "dinheiro",  img: "img/dinheiro.png" }
+    ]
+  },
+
   // Adicione mais temas aqui (insper, espm, ibmec, “Top ENEM”, “Ivy League”…)
 };
 
