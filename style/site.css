@@ -867,3 +867,146 @@ body > div.container {
     display: none !important;
   }
 }
+/* ===== Seletor de Tema ===== */
+.theme-picker{ position: relative; display:inline-block; }
+.theme-button{ padding:8px 12px; font-weight:700; }
+.theme-menu{
+  position:absolute; right:0; top:calc(100% + 8px);
+  min-width: 220px;
+  background:#fff; border:1px solid var(--cinza-borda); border-radius:12px;
+  box-shadow: var(--shadow);
+  padding:6px;
+  z-index: 50;
+}
+.theme-option{
+  width:100%;
+  display:block;
+  text-align:left;
+  border:0; background:transparent;
+  padding:10px 12px; border-radius:10px; cursor:pointer; font:inherit; color:var(--texto);
+}
+.theme-option:hover{ background: var(--cinza); }
+.theme-option.is-active{ font-weight:800; }
+:root.dark .theme-menu{ background: var(--cinza); border-color:#2b2f36; }
+:root.dark .theme-option:hover{ background: rgba(255,255,255,.06); }
+
+/* ===== Ajuste de posição do seletor de tema no header ===== */
+.site-header .theme-picker {
+  display: flex;
+  flex-direction: column; /* empilha verticalmente */
+  align-items: flex-end;  /* alinha com o botão de modo escuro */
+  margin-top: 8px;        /* pequeno espaço abaixo do botão dark */
+}
+
+.site-header .theme-button {
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .site-header .theme-picker {
+    align-items: center;   /* centraliza no mobile */
+    margin-top: 10px;
+  }
+}
+/* ===== Colocar o botão "Tema" logo abaixo do botão de modo escuro ===== */
+.site-header .site-nav {
+  display: flex;
+  align-items: center;
+  position: relative; /* cria referência para o posicionamento absoluto */
+}
+
+/* Botão de modo escuro: mantém onde está */
+.site-header .theme-toggle {
+  position: relative;
+  z-index: 2;
+}
+
+/* Faz o botão "Tema" aparecer logo abaixo */
+.site-header .theme-picker {
+  position: absolute;
+  top: 100%;             /* começa logo abaixo do toggle */
+  right: 0;              /* alinha pela direita */
+  margin-top: 6px;       /* pequeno espaço entre os dois */
+}
+
+/* Mantém estilo normal do botão */
+.site-header .theme-button {
+  padding: 6px 12px;
+  font-weight: 600;
+  border-radius: 12px;
+  font-size: 14px;
+}
+/* ===== Espaço extra no header p/ não cortar o botão Tema ===== */
+.site-header {
+  padding-bottom: 28px; /* aumenta a área do header */
+  position: relative;
+  z-index: 3;
+}
+
+/* Ajuste leve na linha inferior, se houver borda */
+.site-header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--cinza-borda, #1a1a1a);
+  pointer-events: none;
+  z-index: 1;
+}
+/* ===== Igualar largura/altura do botão Tema ao botão do modo escuro ===== */
+.site-header .theme-button {
+  min-width: 56px;                /* mesma largura do toggle (ajuste fino se necessário) */
+  width: auto;
+  height: 30px;               /* mesma altura aproximada do toggle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 20px;        /* mesmo raio arredondado */
+  font-size: 14px;
+  border: 2px solid #4a90ff;  /* contorno azul suave */
+  color: #4a90ff;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+/* Hover bonito */
+.site-header .theme-button:hover {
+  background: rgba(74,144,255,0.1);
+  transform: translateY(-1px);
+}
+
+/* Dark mode: mantém contraste */
+:root.dark .theme-button {
+  border-color: #5ea0ff;
+  color: #5ea0ff;
+}
+/* ===== Estilo do botão de tema com nome e seta ===== */
+.theme-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 20px;
+  width: 80px;       /* ajusta largura, igual ao botão escuro se quiser */
+  height: 32px;
+  transition: all 0.25s ease;
+}
+
+.theme-button .arrow {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+/* Gira seta quando menu estiver aberto */
+.theme-picker.open .arrow {
+  transform: rotate(180deg);
+}
+
